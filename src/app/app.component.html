@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    Biblioteca
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="push" [opened]="true">
+    <mat-list>
+      <a mat-list-item routerLink="cliente">Livro</a>
+      <a mat-list-item routerLink="sobre">Gênero</a>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="min-height: calc(100vh - 64px)">
+    <mat-card>
+      <router-outlet></router-outlet>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

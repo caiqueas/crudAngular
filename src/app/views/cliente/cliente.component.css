@@ -1,0 +1,16 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.mat-form-field {
+  width: 300px; /* Defina a largura desejada */
+  margin-bottom: 16px; /* Espaçamento entre os campos */
+}
+
+.button-container {
+  margin-top: 16px; /* Espaçamento acima dos botões */
+}

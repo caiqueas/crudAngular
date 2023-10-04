@@ -1,0 +1,107 @@
+<table mat-table [dataSource]="listaClientes">
+  <!-- Colunas da tabela -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef>Nome do livro</th>
+    <td mat-cell *matCellDef="let cliente">{{ cliente.nome }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="genero">
+    <th mat-header-cell *matHeaderCellDef>Gênero</th>
+    <td mat-cell *matCellDef="let cliente">{{ getNomeSobre(cliente.sobreId) }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let cliente">{{ cliente.status }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="acoes">
+    <th mat-header-cell *matHeaderCellDef>Ações</th>
+    <td mat-cell *matCellDef="let cliente">
+      <span style="cursor:pointer" (click)="remover(cliente.id)">
+        <mat-icon>delete</mat-icon>
+      </span>
+      <span style="cursor:pointer" (click)="editarCliente(cliente)">
+        <mat-icon>edit</mat-icon>
+      </span>
+    </td>
+  </ng-container>
+
+  <!-- Definição das colunas da tabela -->
+  <tr mat-header-row *matHeaderRowDef="['nome', 'genero', 'status', 'acoes']"></tr>
+  <tr mat-row *matRowDef="let cliente; columns: ['nome', 'genero', 'status', 'acoes']"></tr>
+</table>
+
+
+<!-- Formulário de inserção -->
+<div class="form-container">
+  <mat-form-field>
+    <mat-label>Nome do Livro</mat-label>
+    <input matInput type="text" [(ngModel)]="cliente.nome">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Gênero do livro</mat-label>
+    <mat-select [(ngModel)]="selectedSobreId" name="genre">
+      <mat-option value="">Selecione</mat-option>
+      <mat-option *ngFor="let item of sobre" [value]="item.id">{{ item.nome }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select [(ngModel)]="selectedStatus" name="status">
+      <mat-option value="">Selecione</mat-option>
+      <mat-option value="Desejo ter">Desejo ter</mat-option>
+      <mat-option value="Já possuo">Já possuo</mat-option>
+      <mat-option value="Já li">Já li</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="inserir()">
+      <mat-icon>save</mat-icon> Salvar
+    </button>
+    <button mat-raised-button color="warn" (click)="cancelar()">
+      <mat-icon>cancel</mat-icon> Cancelar
+    </button>
+  </div>
+</div>
+
+<!-- Formulário de edição -->
+<div *ngIf="modoEdicao && clienteEmEdicao">
+  <div class="form-container">
+    <!-- Conteúdo do formulário de edição -->
+    <mat-form-field>
+      <mat-label>Nome do Livro</mat-label>
+      <input matInput type="text" [(ngModel)]="clienteEmEdicao.nome">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Gênero do livro</mat-label>
+      <mat-select [(ngModel)]="clienteEmEdicao.sobreId" name="genre">
+        <mat-option value="">Selecione</mat-option>
+        <mat-option *ngFor="let item of sobre" [value]="item.id">{{ item.nome }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="clienteEmEdicao.status" name="status">
+        <mat-option value="">Selecione</mat-option>
+        <mat-option value="Desejo ter">Desejo ter</mat-option>
+        <mat-option value="Já possuo">Já possuo</mat-option>
+        <mat-option value="Já li">Já li</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="salvarEdicao()">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+      <button mat-raised-button color="warn" (click)="cancelarEdicao()">
+        <mat-icon>cancel</mat-icon> Cancelar
+      </button>
+    </div>
+  </div>
+</div>

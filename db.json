@@ -1,0 +1,28 @@
+{
+  "cliente": [
+    {
+      "nome": "Ágape",
+      "sobreId": 8,
+      "status": "Já possuo",
+      "id": 7
+    },
+    {
+      "nome": "Hellraiser",
+      "sobreId": 9,
+      "status": "Já li",
+      "id": 8
+    }
+  ],
+  "sobre": [
+    {
+      "id": 8,
+      "nome": "Religioso",
+      "cpf": ""
+    },
+    {
+      "id": 9,
+      "nome": "Terror",
+      "cpf": ""
+    }
+  ]
+}

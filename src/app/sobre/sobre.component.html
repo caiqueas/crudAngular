@@ -1,0 +1,44 @@
+<table mat-table [dataSource]="listaSobre">
+  <!-- Coluna do nome -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
+    <td mat-cell *matCellDef="let sobre">{{ sobre.nome }}</td>
+  </ng-container>
+
+  <!-- Coluna de ações -->
+  <ng-container matColumnDef="acoes">
+    <th mat-header-cell *matHeaderCellDef>Ações</th>
+    <td mat-cell *matCellDef="let sobre">
+      <span style="cursor:pointer" (click)="remover(sobre.id)">
+        <mat-icon>delete</mat-icon>
+      </span>
+    </td>
+  </ng-container>
+
+  <!-- Definição das colunas -->
+  <tr mat-header-row *matHeaderRowDef="['nome', 'acoes']"></tr>
+  <tr mat-row *matRowDef="let sobre; columns: ['nome', 'acoes']"></tr>
+</table>
+
+
+<div>
+  <mat-form-field>
+    <mat-label>Nome do Gênero</mat-label>
+    <input matInput type="text" [(ngModel)]="sobre.nome">
+  </mat-form-field>
+
+  <br>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="inserir()">
+      <mat-icon>save</mat-icon> Salvar
+    </button>
+    <button mat-raised-button color="warn" (click)="cancelar()">
+      <mat-icon>cancel</mat-icon> Cancelar
+    </button>
+  </div>
+</div>
+
+
+
+
